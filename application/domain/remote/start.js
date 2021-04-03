@@ -12,11 +12,12 @@
       console.warn(`Can not connect to ${metacom.url}`);
     }
   });
+
   try {
-    await metacom.load('example');
+    await metacom.load('employee');
   } catch {
     if (application.worker.id === 'W1') {
-      console.warn('Can not load metacom interface: "example"');
+      console.warn('Can not load metacom interface: "employee"');
     }
   }
 });

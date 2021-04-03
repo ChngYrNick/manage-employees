@@ -34,23 +34,10 @@ CREATE TABLE "SystemSession" (
 ALTER TABLE "SystemSession" ADD CONSTRAINT "pkSystemSession" PRIMARY KEY ("systemSessionId");
 ALTER TABLE "SystemSession" ADD CONSTRAINT "fkSystemSessionUser" FOREIGN KEY ("systemUserId") REFERENCES "SystemUser" ("systemUserId");
 
-CREATE TABLE "Country" (
-  "countryId" bigint generated always as identity,
-  "name" varchar NOT NULL
+CREATE TABLE "Employee" (
+  "employeeid" bigint generated always as identity,
+  "fullname" varchar NOT NULL,
+  "department" varchar NOT NULL
 );
 
-ALTER TABLE "Country" ADD CONSTRAINT "pkCountry" PRIMARY KEY ("countryId");
-
-CREATE UNIQUE INDEX "akCountry" ON "Country" ("name");
-
-CREATE TABLE "City" (
-  "cityId" bigint generated always as identity,
-  "name" varchar NOT NULL,
-  "countryId" bigint NOT NULL
-);
-
-ALTER TABLE "City" ADD CONSTRAINT "pkCity" PRIMARY KEY ("cityId");
-
-CREATE UNIQUE INDEX "akCity" ON "City" ("name");
-
-ALTER TABLE "City" ADD CONSTRAINT "fkCityCountryId" FOREIGN KEY ("countryId") REFERENCES "Country" ("countryId") ON DELETE CASCADE;
+ALTER TABLE "Employee" ADD CONSTRAINT "pkEmployee" PRIMARY KEY ("employeeid");

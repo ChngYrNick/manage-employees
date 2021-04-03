@@ -21,16 +21,9 @@ INSERT INTO "SystemGroupSystemUser" ("systemGroupId", "systemUserId") VALUES
   (2, 3),
   (2, 4);
 
-INSERT INTO "Country" ("name") VALUES
-  ('Soviet Union'),
-  ('People''s Republic of China'),
-  ('Vietnam'),
-  ('Cuba');
-
-INSERT INTO "City" ("name", "countryId") VALUES
-  ('Beijing', 2),
-  ('Wuhan', 2),
-  ('Kiev', 1),
-  ('Havana', 4),
-  ('Hanoi', 3),
-  ('Kaliningrad', 1);
+INSERT INTO "Employee" ("fullname", "department") VALUES
+  ('Zak Abel', 'Development'),
+  ('David Guetta', 'Management'),
+  ('Marilyn Manson', 'Development'),
+  ('Daniel Shake', 'QA'),
+  ('John Doe', 'Development');

@@ -1,47 +1,21 @@
 {
-  "name": "metarhia",
-  "version": "1.2.0",
-  "author": "Timur Shemsedinov <timur.shemsedinov@gmail.com>",
-  "description": "Metarhia Application Example",
+  "name": "manage-employees-api",
+  "version": "1.0.0",
+  "author": "Serhii Moskovko <cakedispensers@gmail.com>",
+  "description": "Manage Employees API",
   "license": "MIT",
   "keywords": [
-    "metarhia",
-    "starter",
-    "kit",
-    "cloud",
-    "impress",
     "nodejs",
-    "example",
-    "websocket",
     "api",
-    "application",
-    "server",
-    "rpc",
-    "soa",
-    "service",
-    "stateful",
-    "rest",
-    "restful",
-    "web",
-    "framework",
-    "router",
-    "routing",
-    "cluster",
-    "cache",
-    "http",
-    "https",
-    "websockets"
+    "server"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/metarhia/Example"
+    "url": "https://github.com/ChngYrNick/manage-employees-api"
   },
-  "bugs": {
-    "url": "https://github.com/metarhia/Example/issues"
-  },
-  "homepage": "https://github.com/metarhia/Example",
   "main": "server.js",
   "scripts": {
+    "start": "node server.js",
     "test": "npm run -s lint && node test/system.js",
     "lint": "eslint ."
   },
