@@ -17,18 +17,34 @@
   "scripts": {
     "start": "node server.js",
     "test": "npm run -s lint && node test/system.js",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "postinstall": "npm run copy-libs",
+    "update-deps": "npm update",
+    "postupdate-deps": "npm run copy-libs",
+    "copy-libs": "cpx \"node_modules/{angular,angular-*,bootstrap/dist,jquery/dist}/**/*\" application/static/lib -C",
+    "prestart": "npm install",
+    "pretest": "npm install",
+    "test-single-run": "npm test -- --single-run",
+    "preupdate-webdriver": "npm install",
+    "update-webdriver": "webdriver-manager update"
   },
   "engines": {
     "node": "^12.9 || 14 || 15"
   },
   "devDependencies": {
     "@types/node": "^14.14.35",
+    "cpx": "^1.5.0",
     "eslint": "^7.22.0",
     "metatests": "^0.7.2"
   },
   "dependencies": {
+    "angular": "1.8.x",
+    "angular-animate": "1.8.x",
+    "angular-resource": "1.8.x",
+    "angular-route": "1.8.x",
+    "bootstrap": "3.3.x",
     "impress": "^2.1.0",
+    "jquery": "3.3.x",
     "metasql": "^1.0.0",
     "redis": "^3.0.2"
   }
