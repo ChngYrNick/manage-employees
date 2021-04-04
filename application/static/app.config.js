@@ -6,7 +6,7 @@ angular.
     function config($routeProvider) {
       $routeProvider.
         when('/', {
-          template: '<hello-world></hello-world>'
+          template: '<employee-table></employee-table>'
         }).
         otherwise('/');
     }

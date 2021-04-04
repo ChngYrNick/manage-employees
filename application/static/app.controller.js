@@ -4,11 +4,11 @@ angular.module('manageEmployeeApp').controller('appController', [
   '$scope',
   '$window',
   'Metacom',
-  (scope, win, Metacom) => {
-    scope.onInit = async () => {
+  ($scope, $window, Metacom) => {
+    $scope.onInit = async () => {
       const protocol = location.protocol === 'http:' ? 'ws' : 'wss';
-      win.metacom = Metacom.create(`${protocol}://${location.host}/api`);
-      win.api = metacom.api;
+      $window.metacom = Metacom.create(`${protocol}://${location.host}/api`);
+      $window.api = metacom.api;
       await metacom.load('auth', 'employee');
       const token = localStorage.getItem('metarhia.session.token');
       let logged = false;

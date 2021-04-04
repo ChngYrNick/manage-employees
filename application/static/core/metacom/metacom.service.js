@@ -3,14 +3,14 @@
 angular.module('core.metacom').factory('Metacom', [
   'EventEmitter',
   '$window',
-  (EventEmitter, win) => {
+  (EventEmitter, $window) => {
     const CALL_TIMEOUT = 7 * 1000;
     const PING_INTERVAL = 60 * 1000;
     const RECONNECT_TIMEOUT = 2 * 1000;
 
     const connections = new Set();
 
-    win.addEventListener('online', () => {
+    $window.addEventListener('online', () => {
       for (const connection of connections) {
         if (!connection.connected) connection.open();
       }
