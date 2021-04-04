@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('core.eventEmitter').factory('EventEmitter', function() {
+angular.module('core.eventEmitter').factory('EventEmitter', () => {
   class EventEmitter {
     constructor() {
       this.events = new Map();

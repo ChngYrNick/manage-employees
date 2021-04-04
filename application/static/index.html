@@ -12,6 +12,7 @@
     <script src="lib/angular-route/angular-route.js"></script>
     <script src="app.module.js"></script>
     <script src="app.config.js"></script>
+    <script src="app.controller.js"></script>
     <script src="core/core.module.js"></script>
 
     <script src="core/event-emitter/event-emitter.module.js"></script>
@@ -22,7 +23,7 @@
     <script src="hello-world/hello-world.module.js"></script>
     <script src="hello-world/hello-world.component.js"></script>
   </head>
-  <body>
+  <body ng-controller="appController" ng-init="onInit()">
 
     <div class="view-container">
       <div ng-view class="view-frame"></div>

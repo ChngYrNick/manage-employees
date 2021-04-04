@@ -1,10 +1,11 @@
 {
   "parserOptions": {
-    "sourceType": "module"
+    "sourceType": "script"
   },
   "globals": {
-    "application": "readonly",
-    "api": "readonly"
+    "metacom": "readonly",
+    "api": "readonly",
+    "angular": "readonly"
   },
   "rules": {
     "id-denylist": [
