@@ -1,13 +1,14 @@
 {
-  "name": "manage-employees-api",
+  "name": "manage-employees",
   "version": "1.0.0",
   "author": "Serhii Moskovko <cakedispensers@gmail.com>",
-  "description": "Manage Employees API",
+  "description": "Example manage employees app using AngularJS and Metarhia technology stack starter kit",
   "license": "MIT",
   "keywords": [
     "nodejs",
     "api",
-    "server"
+    "server",
+    "angularjs"
   ],
   "repository": {
     "type": "git",
