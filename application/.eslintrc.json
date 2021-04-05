@@ -9,6 +9,7 @@
       "node",
       "npm",
       "api",
+      "metacom",
       "lib",
       "domain",
       "config",

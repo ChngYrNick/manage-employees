@@ -12,7 +12,7 @@
     <script src="lib/angular-route/angular-route.js"></script>
     <script src="app.module.js"></script>
     <script src="app.config.js"></script>
-    <script src="app.controller.js"></script>
+    <script src="app.router.js"></script>
     <script src="core/core.module.js"></script>
 
     <script src="core/event-emitter/event-emitter.module.js"></script>
@@ -21,11 +21,13 @@
     <script src="core/metacom/metacom.service.js"></script>
     <script src="core/employee/employee.module.js"></script>
     <script src="core/employee/employee.service.js"></script>
+    <script src="core/auth/auth.module.js"></script>
+    <script src="core/auth/auth.service.js"></script>
 
     <script src="employee-table/employee-table.module.js"></script>
     <script src="employee-table/employee-table.component.js"></script>
   </head>
-  <body ng-controller="appController" ng-init="onInit()">
+  <body>
 
     <div class="view-container">
       <div ng-view class="view-frame"></div>

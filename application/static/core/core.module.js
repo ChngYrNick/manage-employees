@@ -1,4 +1,9 @@
 'use strict';
 
 // Define the `core` module
-angular.module('core', ['core.eventEmitter', 'core.metacom', 'core.employee']);
+angular.module('core', [
+  'core.eventEmitter',
+  'core.metacom',
+  'core.employee',
+  'core.auth',
+]);
