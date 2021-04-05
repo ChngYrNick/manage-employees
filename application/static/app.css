@@ -1,0 +1,22 @@
+table {
+  width: 100%;
+}
+
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 8px;
+}
+
+td:first-child,
+td:last-child,
+td:nth-last-child(2) {
+  text-align: center;
+}
+
+.view-frame {
+  padding: 16px;
+}

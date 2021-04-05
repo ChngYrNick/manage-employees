@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('manageEmployeeApp', [
+angular.module('app', [
   'ngRoute',
   'core',
   'employeeTable'

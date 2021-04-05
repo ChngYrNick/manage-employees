@@ -8,6 +8,9 @@ angular.module('employeeTable').component('employeeTable', {
     function EmployeeTableController($scope, employeeService) {
       employeeService.getEmployees().then((employees) => {
         $scope.employees = employees;
+        $scope.departments = employees
+          .map((employee) => employee.department)
+          .filter((x, i, a) => a.indexOf(x) === i);
       });
     },
   ],

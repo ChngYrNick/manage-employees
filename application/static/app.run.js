@@ -1,15 +1,10 @@
 'use strict';
 
-angular.module('manageEmployeeApp').run([
-  '$window',
+angular.module('app').run([
   '$q',
-  'Metacom',
+  'metacom',
   'authService',
-  ($window, $q, Metacom, authService) => {
-    const protocol = location.protocol === 'http:' ? 'ws' : 'wss';
-    $window.metacom = Metacom.create(`${protocol}://${location.host}/api`);
-    $window.api = metacom.api;
-
+  ($q, metacom, authService) => {
     $q(() => {
       metacom.load('auth', 'employee');
     }).then(() => {

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('core.metacom').factory('Metacom', [
+angular.module('core.metacom').factory('metacom', [
   'EventEmitter',
   '$window',
   (EventEmitter, $window) => {
@@ -248,6 +248,8 @@ angular.module('core.metacom').factory('Metacom', [
       http: HttpTransport,
     };
 
-    return Metacom;
+    const protocol = location.protocol === 'http:' ? 'ws' : 'wss';
+
+    return Metacom.create(`${protocol}://${location.host}/api`);
   },
 ]);

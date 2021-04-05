@@ -2,10 +2,11 @@
 
 angular.module('core.employee').factory('employeeService', [
   '$q',
-  ($q) => ({
+  'metacom',
+  ($q, metacom) => ({
     getEmployees() {
       return $q((resolve, reject) => {
-        api.employee
+        metacom.api.employee
           .getEmployees()
           .then((response) => {
             resolve(response.data);
@@ -15,7 +16,7 @@ angular.module('core.employee').factory('employeeService', [
     },
     getEmployeeById(id) {
       return $q((resolve, reject) => {
-        api.employee
+        metacom.api.employee
           .getEmployeeById({ employeeid: id })
           .then((response) => {
             resolve(response.data);
@@ -25,7 +26,7 @@ angular.module('core.employee').factory('employeeService', [
     },
     createEmployee(data) {
       return $q((resolve, reject) => {
-        api.employee
+        metacom.api.employee
           .createEmployee(data)
           .then((response) => {
             resolve(response.data);
@@ -35,7 +36,7 @@ angular.module('core.employee').factory('employeeService', [
     },
     updateEmployeeById(data) {
       return $q((resolve, reject) => {
-        api.employee
+        metacom.api.employee
           .updateEmployeeById(data)
           .then((response) => {
             resolve(response.data);
@@ -45,7 +46,7 @@ angular.module('core.employee').factory('employeeService', [
     },
     deleteEmployeeById(id) {
       return $q((resolve, reject) => {
-        api.employee
+        metacom.api.employee
           .deleteEmployeeById({ employeeid: id })
           .then((response) => {
             resolve(response.data);

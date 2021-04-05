@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" ng-app="manageEmployeeApp">
+<html lang="en" ng-app="app">
   <head>
     <meta charset="utf-8">
     <title>Manage Employees App</title>
@@ -11,8 +11,8 @@
     <script src="lib/angular-resource/angular-resource.js"></script>
     <script src="lib/angular-route/angular-route.js"></script>
     <script src="app.module.js"></script>
+    <script src="app.run.js"></script>
     <script src="app.config.js"></script>
-    <script src="app.router.js"></script>
     <script src="core/core.module.js"></script>
 
     <script src="core/event-emitter/event-emitter.module.js"></script>
@@ -27,11 +27,12 @@
     <script src="employee-table/employee-table.module.js"></script>
     <script src="employee-table/employee-table.component.js"></script>
   </head>
-  <body>
 
+  <body ng-app="app">
     <div class="view-container">
-      <div ng-view class="view-frame"></div>
+      <div class="container">
+        <div ng-view class="view-frame"></div>
+      </div>
     </div>
-
   </body>
 </html>

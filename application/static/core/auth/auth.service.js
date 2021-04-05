@@ -2,10 +2,11 @@
 
 angular.module('core.auth').factory('authService', [
   '$q',
-  ($q) => ({
+  'metacom',
+  ($q, metacom) => ({
     signIn(data) {
       return $q((resolve, reject) => {
-        api.auth
+        metacom.api.auth
           .signIn(data)
           .then((response) => {
             resolve(response.token);
@@ -15,7 +16,7 @@ angular.module('core.auth').factory('authService', [
     },
     restore(token) {
       return $q((resolve, reject) => {
-        api.auth
+        metacom.api.auth
           .restore({ token })
           .then((response) => {
             resolve(response.status);

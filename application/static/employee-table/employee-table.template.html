@@ -1,7 +1,13 @@
+<input type="text" placeholder="Search employee" ng-model="search.fullname">
+<select ng-model="search.department"
+    ng-options="department for department in departments">
+</select>
 <table>
-  <tr ng-repeat="employee in employees">
-    <td>{{ employee.employeeid }}</td>
+  <tr ng-repeat="employee in employees | filter:search">
+    <td>{{ $index + 1 }}</td>
     <td>{{ employee.fullname }}</td>
     <td>{{ employee.department }}</td>
+    <td><a href="#!/edit/{{employee.employeeid}}">Edit</a></td>
+    <td><a>Delete</a></td>
   </tr>
 </table>

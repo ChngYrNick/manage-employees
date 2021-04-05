@@ -1,7 +1,7 @@
 'use strict';
 
 angular.
-  module('manageEmployeeApp').
+  module('app').
   config(['$routeProvider',
     function config($routeProvider) {
       $routeProvider.
