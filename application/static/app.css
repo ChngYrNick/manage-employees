@@ -10,6 +10,10 @@ td:nth-child(2) {
   text-align: left;
 }
 
+td:nth-child(2):hover {
+  cursor: pointer;
+}
+
 .view-frame {
   padding: 16px;
 }

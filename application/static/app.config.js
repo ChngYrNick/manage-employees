@@ -7,6 +7,9 @@ angular.module('app').config([
       .when('/', {
         template: '<employee-table></employee-table>',
       })
+      .when('/:employeeid', {
+        template: '<employee-detail></employee-detail>',
+      })
       .otherwise({
         template: '<not-found></not-found>',
       });
