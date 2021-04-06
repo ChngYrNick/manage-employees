@@ -29,7 +29,7 @@ angular.module('core.employee').factory('employeeService', [
         metacom.api.employee
           .createEmployee(data)
           .then((response) => {
-            resolve(response.data);
+            resolve(response);
           })
           .catch((err) => reject(err));
       });

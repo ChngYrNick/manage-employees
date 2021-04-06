@@ -1,0 +1,19 @@
+<div class="row col-md-4">
+  <form>
+    <div class="form-group">
+      <label for="create-employee-input-fullname">Full Name</label>
+      <input type="text" class="form-control" id="create-employee-input-fullname" ng-model="employee.fullname">
+    </div>
+    <div class="form-group">
+      <label for="create-employee-input-department">Department</label>
+      <input type="text" class="form-control" id="create-employee-input-department" ng-model="employee.department">
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-success" ng-click="createEmployee()" ng-disabled="status.isLoading">Save</button>
+      <button type="submit" class="btn btn-primary"ng-click="goBack()">Cancel</button>
+      <img ng-if="status.showInfo && status.isLoading" src="./images/small-spiner.svg" alt="spiner"/>
+      <p ng-if="status.showInfo && status.isSuccess" class="text-success" style="display:inline-block;">*success*</p>
+      <p ng-if="status.showInfo && !status.isSuccess" class="text-danger" style="display:inline-block;">*failure*</p>
+    </div>
+  </form>
+</div>

@@ -5,5 +5,6 @@ angular.module('app', [
   'core',
   'employeeTable',
   'employeeDetail',
+  'employeeCreate',
   'notFound'
 ]);

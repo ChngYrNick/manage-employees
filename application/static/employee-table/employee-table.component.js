@@ -12,10 +12,16 @@ angular.module('employeeTable').component('employeeTable', {
         $scope.departments = employees
           .map((employee) => employee.department)
           .filter((x, i, a) => a.indexOf(x) === i);
+
+        $scope.departments.unshift('');
       });
 
       $scope.goToEmployeeDetail = function(employeeid) {
-        $window.location.href = `/#!/${employeeid}`;
+        $window.location.href = `/#!/employee/${employeeid}`;
+      };
+
+      $scope.goToEmployeeCreate = function() {
+        $window.location.href = '/#!/create';
       };
     },
   ],

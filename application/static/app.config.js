@@ -7,8 +7,11 @@ angular.module('app').config([
       .when('/', {
         template: '<employee-table></employee-table>',
       })
-      .when('/:employeeid', {
+      .when('/employee/:employeeid', {
         template: '<employee-detail></employee-detail>',
+      })
+      .when('/create/', {
+        template: '<employee-create></employee-create>',
       })
       .otherwise({
         template: '<not-found></not-found>',
