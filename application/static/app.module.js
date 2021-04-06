@@ -3,5 +3,6 @@
 angular.module('app', [
   'ngRoute',
   'core',
-  'employeeTable'
+  'employeeTable',
+  'notFound'
 ]);
