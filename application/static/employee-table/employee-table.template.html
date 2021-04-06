@@ -1,13 +1,36 @@
-<input type="text" placeholder="Search employee" ng-model="search.fullname">
-<select ng-model="search.department"
-    ng-options="department for department in departments">
-</select>
-<table>
-  <tr ng-repeat="employee in employees | filter:search">
-    <td>{{ $index + 1 }}</td>
-    <td>{{ employee.fullname }}</td>
-    <td>{{ employee.department }}</td>
-    <td><a href="#!/edit/{{employee.employeeid}}">Edit</a></td>
-    <td><a>Delete</a></td>
-  </tr>
+<form class="form-inline toolbar">
+  <div class="form-group">
+    <label class="sr-only" for="search-employee">Search employee</label>
+    <input id="search-employee" class="form-control" type="text" placeholder="Search employee" ng-model="search.fullname">
+  </div>
+  <div class="form-group">
+    <label class="sr-only" for="select-department">Select department</label>
+    <select class="form-control" id="select-department" ng-model="search.department"
+      ng-options="department for department in departments">
+    </select>
+  </div>
+  <button type="submit" class="btn btn-primary">Add</button>
+</form>
+
+<table class="table-responsive">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Employee</th>
+        <th>Department</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="employee in employees | filter:search">
+        <td>{{ $index + 1 }}</td>
+        <td>{{ employee.fullname }}</td>
+        <td>{{ employee.department }}</td>
+        <td><a href="#!/edit/{{employee.employeeid}}">Edit</a></td>
+        <td><a>Delete</a></td>
+      </tr>
+    </tbody>
+  </table>
 </table>

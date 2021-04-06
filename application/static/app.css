@@ -1,20 +1,13 @@
-table {
-  width: 100%;
+.toolbar {
+  margin-bottom: 16px;
 }
 
-table, th, td {
-  border: 1px solid black;
-  border-collapse: collapse;
-}
-
-th, td {
-  padding: 8px;
-}
-
-td:first-child,
-td:last-child,
-td:nth-last-child(2) {
+th,td {
   text-align: center;
+}
+
+td:nth-child(2) {
+  text-align: left;
 }
 
 .view-frame {
