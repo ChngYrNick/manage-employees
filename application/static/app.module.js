@@ -7,5 +7,4 @@ angular.module('app', [
   'employeeDetail',
   'employeeCreate',
   'employeeEdit',
-  'notFound'
 ]);

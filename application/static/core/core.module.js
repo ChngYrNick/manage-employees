@@ -6,4 +6,5 @@ angular.module('core', [
   'core.metacom',
   'core.employee',
   'core.auth',
+  'core.modal',
 ]);

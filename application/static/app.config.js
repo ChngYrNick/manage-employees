@@ -17,7 +17,7 @@ angular.module('app').config([
         template: '<employee-create></employee-create>',
       })
       .otherwise({
-        template: '<not-found></not-found>',
+        templateUrl: '/partials/not-found.template.html',
       });
   },
 ]);
