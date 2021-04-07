@@ -39,7 +39,7 @@ angular.module('core.employee').factory('employeeService', [
         metacom.api.employee
           .updateEmployeeById(data)
           .then((response) => {
-            resolve(response.data);
+            resolve(response);
           })
           .catch((err) => reject(err));
       });
@@ -49,7 +49,7 @@ angular.module('core.employee').factory('employeeService', [
         metacom.api.employee
           .deleteEmployeeById({ employeeid: id })
           .then((response) => {
-            resolve(response.data);
+            resolve(response);
           })
           .catch((err) => reject(err));
       });

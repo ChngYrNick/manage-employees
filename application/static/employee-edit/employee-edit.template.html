@@ -11,7 +11,7 @@
         <input type="text" class="form-control" id="create-employee-input-department" ng-model="employee.department">
       </div>
       <div class="form-group">
-        <button type="submit" class="btn btn-success" ng-click="createEmployee()" ng-disabled="status.isLoading">Save</button>
+        <button type="submit" class="btn btn-success" ng-click="editEmployee()" ng-disabled="status.isLoading">Save</button>
         <button type="submit" class="btn btn-primary"ng-click="goBack()">Cancel</button>
         <img ng-if="status.showInfo && status.isLoading" src="./images/small-spiner.svg" alt="spiner"/>
         <p ng-if="status.showInfo && status.isSuccess" class="text-success" style="display:inline-block;">*success*</p>

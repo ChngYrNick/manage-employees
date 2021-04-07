@@ -6,5 +6,6 @@ angular.module('app', [
   'employeeTable',
   'employeeDetail',
   'employeeCreate',
+  'employeeEdit',
   'notFound'
 ]);

@@ -10,6 +10,9 @@ angular.module('app').config([
       .when('/employee/:employeeid', {
         template: '<employee-detail></employee-detail>',
       })
+      .when('/edit/:employeeid', {
+        template: '<employee-edit></employee-edit>',
+      })
       .when('/create/', {
         template: '<employee-create></employee-create>',
       })
