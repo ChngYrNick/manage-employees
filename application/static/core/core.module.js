@@ -7,4 +7,5 @@ angular.module('core', [
   'core.employee',
   'core.auth',
   'core.modal',
+  'core.init',
 ]);

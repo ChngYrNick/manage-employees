@@ -6,6 +6,14 @@ angular.module('app').config([
     $routeProvider
       .when('/', {
         template: '<employee-table></employee-table>',
+        resolve: {
+          init: [
+            'initService',
+            function(initService) {
+              return initService.promise;
+            },
+          ],
+        },
       })
       .when('/employee/:employeeid', {
         template: '<employee-detail></employee-detail>',

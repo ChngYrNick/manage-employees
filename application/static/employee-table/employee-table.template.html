@@ -14,7 +14,6 @@
   </div>
 </div>
 
-
 <table class="table-responsive">
   <table class="table table-bordered">
     <thead>
@@ -32,8 +31,27 @@
         <td ng-click="goToEmployeeDetail(employee.employeeid)">{{ employee.fullname }}</td>
         <td>{{ employee.department }}</td>
         <td><a href="#!/edit/{{employee.employeeid}}">Edit</a></td>
-        <td><a>Delete</a></td>
+        <td><a ng-click="onDelete(employee.employeeid)" style="cursor: pointer;">Delete</a></td>
       </tr>
     </tbody>
   </table>
 </table>
+
+<modal id="modal-confirm">
+  <div class="modal-background">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <div class="modal">
+            <div class="modal-body">
+              <p>Are you sure?</p
+              <p>You realy wana delete this perfect record???</p>
+              <button type="button" class="btn btn-default" ng-click="closeModal('modal-confirm');">Cancel</button>
+              <button type="button" class="btn btn-danger" ng-click="confirmDelete()">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</modal>

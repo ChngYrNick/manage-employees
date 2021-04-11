@@ -1,49 +1,31 @@
 'use strict';
 
-angular.module('core.modal').service('modalService', [
-  '$modal',
-  function($modal) {
-    const modalDefaults = {
-      backdrop: true,
-      keyboard: true,
-      modalFade: true,
-      templateUrl: '/partials/modal-window.template.html',
-    };
+angular.module('core.modal').factory('modalService', () => {
+  class ModalService {
+    constructor() {
+      this.modals = [];
+    }
 
-    const modalOptions = {
-      closeButtonText: 'Close',
-      actionButtonText: 'OK',
-      headerText: 'Proceed?',
-      bodyText: 'Perform this action?',
-    };
+    findById(id) {
+      return this.modals.findIndex((modal) => modal.id === id);
+    }
 
-    this.showModal = function(customModalDefaults, customModalOptions) {
-      if (!customModalDefaults) customModalDefaults = {};
-      customModalDefaults.backdrop = 'static';
-      return this.show(customModalDefaults, customModalOptions);
-    };
+    add(modal) {
+      this.modals.push(modal);
+    }
 
-    this.show = function(customModalDefaults, customModalOptions) {
-      const tempModalDefaults = {};
-      const tempModalOptions = {};
+    remove(id) {
+      this.modals.splice(this.findById(id), 1);
+    }
 
-      angular.extend(tempModalDefaults, modalDefaults, customModalDefaults);
+    open(id) {
+      this.modals[this.findById(id)].open();
+    }
 
-      angular.extend(tempModalOptions, modalOptions, customModalOptions);
+    close(id) {
+      this.modals[this.findById(id)].close();
+    }
+  }
 
-      if (!tempModalDefaults.controller) {
-        tempModalDefaults.controller = function($scope, $modalInstance) {
-          $scope.modalOptions = tempModalOptions;
-          $scope.modalOptions.ok = function(result) {
-            $modalInstance.close(result);
-          };
-          $scope.modalOptions.close = function() {
-            $modalInstance.dismiss('cancel');
-          };
-        };
-      }
-
-      return $modal.open(tempModalDefaults).result;
-    };
-  },
-]);
+  return new ModalService();
+});

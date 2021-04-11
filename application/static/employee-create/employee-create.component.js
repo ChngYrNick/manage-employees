@@ -13,10 +13,6 @@ angular.module('employeeCreate').component('employeeCreate', {
         showInfo: false,
       };
 
-      function clearInputs() {
-        $scope.employee = { fullname: '', department: '' };
-      }
-
       function onSuccess() {
         $scope.status.isSuccess = true;
         $scope.status.isLoading = false;
@@ -34,7 +30,7 @@ angular.module('employeeCreate').component('employeeCreate', {
 
       $scope.createEmployee = function() {
         const { fullname, department } = $scope.employee;
-        clearInputs();
+        $scope.employee = { fullname: '', department: '' };
         onSubmit();
 
         employeeService.createEmployee({ fullname, department }).then(

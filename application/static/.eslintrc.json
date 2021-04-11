@@ -3,9 +3,8 @@
     "sourceType": "script"
   },
   "globals": {
-    "metacom": "readonly",
-    "api": "readonly",
-    "angular": "readonly"
+    "angular": "readonly",
+    "$": "readonly"
   },
   "rules": {
     "id-denylist": [
