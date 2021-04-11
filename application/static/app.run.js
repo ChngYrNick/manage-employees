@@ -1,31 +1,32 @@
 'use strict';
 
 angular.module('app').run([
+  '$rootScope',
+  '$location',
   'metacom',
   'authService',
   'initService',
-  (metacom, authService, initService) => {
+  ($rootScope, $location, metacom, authService, initService) => {
     metacom.load('auth', 'employee').then(() => {
+      $rootScope.$on('$routeChangeStart', () => {
+        const token = localStorage.getItem('metarhia.session.token');
+        if (!token) {
+          $location.path('/sign-in');
+        }
+      });
+
       const token = localStorage.getItem('metarhia.session.token');
-      if (token) {
-        authService.restore(token).then((status) => {
-          if (status !== 'logged') {
-            authService
-              .signIn({ login: 'marcus', password: 'marcus' })
-              .then((token) => {
-                localStorage.setItem('metarhia.session.token', token);
-                initService.defer.resolve();
-              });
-          }
-          initService.defer.resolve();
-        });
+      if (!token) {
+        $location.path('/sign-in');
+        initService.defer.resolve();
+        return;
       }
-      authService
-        .signIn({ login: 'marcus', password: 'marcus' })
-        .then((token) => {
-          localStorage.setItem('metarhia.session.token', token);
-          initService.defer.resolve();
-        });
+      authService.restore(token).then((status) => {
+        if (status !== 'logged') {
+          $location.path('/sign-in');
+        }
+        initService.defer.resolve();
+      });
     });
   },
 ]);

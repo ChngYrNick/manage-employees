@@ -1,5 +1,9 @@
+:root {
+  --free-space: 16px;
+}
+
 .toolbar {
-  margin-bottom: 16px;
+  margin-bottom: var(--free-space);
 }
 
 th,td {
@@ -15,7 +19,7 @@ td:nth-child(2):hover {
 }
 
 .view-frame {
-  padding: 16px;
+  padding: var(--free-space);
 }
 
 modal {
@@ -25,11 +29,11 @@ modal {
 .modal {
   display: block;
   position: relative;
-  margin: 16px;
+  margin: var(--free-space);
 }
 
 .modal-body {
-  padding: 16px;
+  padding: var(--free-space);
   background: #fff;
 }
 
@@ -55,4 +59,39 @@ modal {
 
 body.modal-open {
   overflow: hidden;
+}
+
+.form-signin {
+  max-width: 330px;
+  padding: 16px;
+  margin: 0 auto;
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: var(--free-space);
+}
+.form-signin .checkbox {
+  font-weight: 400;
+}
+.form-signin .form-control {
+  position: relative;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: var(--free-space);
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="text"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: var(--free-space);
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }
