@@ -31,7 +31,9 @@ angular.module('core.employee').factory('employeeService', [
           .then((response) => {
             resolve(response);
           })
-          .catch((err) => reject(err));
+          .catch((err) => {
+            reject(err);
+          });
       });
     },
     updateEmployeeById(data) {

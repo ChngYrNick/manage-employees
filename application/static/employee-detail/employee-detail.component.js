@@ -14,7 +14,7 @@ angular.module('employeeDetail').component('employeeDetail', {
       employeeService,
     ) {
       employeeService
-        .getEmployeeById($routeParams.employeeid)
+        .getEmployeeById(parseInt($routeParams.employeeid, 10))
         .then((employee) => {
           $scope.employee = employee;
         });

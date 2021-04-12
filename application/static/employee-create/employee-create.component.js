@@ -43,7 +43,7 @@ angular.module('employeeCreate').component('employeeCreate', {
           },
           (error) => {
             onFailure();
-            console.log(error);
+            console.error(error);
           },
         );
       };

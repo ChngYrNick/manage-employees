@@ -20,7 +20,7 @@ angular.module('employeeEdit').component('employeeEdit', {
       };
 
       employeeService
-        .getEmployeeById($routeParams.employeeid)
+        .getEmployeeById(parseInt($routeParams.employeeid, 10))
         .then((employee) => {
           $scope.employee = employee;
         });
@@ -46,7 +46,11 @@ angular.module('employeeEdit').component('employeeEdit', {
         onSubmit();
 
         employeeService
-          .updateEmployeeById({ employeeid, fullname, department })
+          .updateEmployeeById({
+            employeeid: parseInt(employeeid, 10),
+            fullname,
+            department,
+          })
           .then(
             (response) => {
               if (response.result === 'success') {

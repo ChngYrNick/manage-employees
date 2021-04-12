@@ -30,11 +30,13 @@ angular.module('employeeTable').component('employeeTable', {
         function onConfirm(id) {
           modalService.close('modal-confirm');
 
-          employeeService.deleteEmployeeById(id).then((response) => {
-            if (response.result === 'success') {
-              reloadData();
-            }
-          });
+          employeeService
+            .deleteEmployeeById(parseInt(id, 10))
+            .then((response) => {
+              if (response.result === 'success') {
+                reloadData();
+              }
+            });
         }
 
         $scope.confirmDelete = onConfirm.bind(null, id);
