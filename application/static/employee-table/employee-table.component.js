@@ -7,12 +7,7 @@ angular.module('employeeTable').component('employeeTable', {
     '$window',
     'employeeService',
     'modalService',
-    function EmployeeTableController(
-      $scope,
-      $window,
-      employeeService,
-      modalService,
-    ) {
+    function($scope, $window, employeeService, modalService) {
       function reloadData() {
         employeeService.getEmployees().then((employees) => {
           $scope.employees = employees;

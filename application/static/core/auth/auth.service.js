@@ -9,7 +9,7 @@ angular.module('core.auth').factory('authService', [
         metacom.api.auth
           .signin(data)
           .then((response) => {
-            resolve(response.token);
+            resolve(response);
           })
           .catch((err) => reject(err));
       });

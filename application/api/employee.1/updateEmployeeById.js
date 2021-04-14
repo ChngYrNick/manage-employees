@@ -14,11 +14,15 @@
     if (!fullname && !department) {
       return new Error('Has to be at least one field provided');
     }
-    if (department.length < 2) {
-      return new Error('Department must be at least 2 characters long');
+    try {
+      domain.employee.validate.validateEmployee({ fullname, department });
+    } catch (error) {
+      return error;
     }
-    if (fullname.split(' ').length < 2) {
-      return new Error('Full name must contain at least 2 words');
+
+    const result = await api.employee.getEmployeeById({ employeeid });
+    if (result instanceof Error) {
+      return result;
     }
 
     const newData = {};

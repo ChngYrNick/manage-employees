@@ -8,4 +8,6 @@ angular.module('core', [
   'core.auth',
   'core.modal',
   'core.init',
+  'core.error',
+  'core.base',
 ]);

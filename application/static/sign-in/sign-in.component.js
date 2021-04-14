@@ -5,17 +5,32 @@ angular.module('signIn').component('signIn', {
   controller: [
     '$scope',
     '$window',
+    '$controller',
     'authService',
-    function signInController($scope, $window, authService) {
-      $scope.onSignIn = function() {
-        const { login, password } = $scope.form;
+    function($scope, $window, $controller, authService) {
+      angular.extend(this, $controller('base', { $scope }));
 
-        authService.signIn({ login, password }).then((token) => {
-          localStorage.setItem('metarhia.session.token', token);
-          $scope.form = { login: '', password: '' };
-          $window.location.href = '/#!/';
-        });
-      };
+      function onSignIn() {
+        const { login, password } = $scope.form;
+        this.onSubmit();
+
+        authService.signIn({ login, password }).then(
+          (response) => {
+            if (response.status === 'logged') {
+              this.onSuccess();
+              localStorage.setItem('metarhia.session.token', response.token);
+              $scope.form = { login: '', password: '' };
+              $window.location.href = '/#!/';
+            }
+            this.onFailure();
+          },
+          (error) => {
+            this.onFailure(error);
+          },
+        );
+      }
+
+      $scope.onSignIn = onSignIn.bind(this);
     },
   ],
 });

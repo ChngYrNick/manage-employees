@@ -1,13 +1,21 @@
-<strong>
-  <p>Department</p>
-</strong>
-<p>{{ employee.department }}</p>
-<strong>
-  <p>Full Name</p>
-</strong>
-<p>{{ employee.fullname }}</p>
-<strong>
-  <p>Notes</p>
-</strong>
+<div class="row" ng-if="employee">
+  <strong>
+    <p>Department</p>
+  </strong>
+  <p>{{ employee.department }}</p>
+  <strong>
+    <p>Full Name</p>
+  </strong>
+  <p>{{ employee.fullname }}</p>
+  <strong>
+    <p>Notes</p>
+  </strong>
+</div>
 
-<button class="btn btn-primary" type="button" ng-click="goBack()">Back</button>
+<div class="row">
+  <error></error>
+</div>
+
+<div class="row">
+  <button class="btn btn-primary" type="button" ng-click="goBack()">Back</button>
+</div>

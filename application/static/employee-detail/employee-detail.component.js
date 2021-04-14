@@ -15,9 +15,14 @@ angular.module('employeeDetail').component('employeeDetail', {
     ) {
       employeeService
         .getEmployeeById(parseInt($routeParams.employeeid, 10))
-        .then((employee) => {
-          $scope.employee = employee;
-        });
+        .then(
+          (employee) => {
+            $scope.employee = employee;
+          },
+          (error) => {
+            $scope.error = error;
+          },
+        );
 
       $scope.goBack = function() {
         $window.location.href = '/#!/';

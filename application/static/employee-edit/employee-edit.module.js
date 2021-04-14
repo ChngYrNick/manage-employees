@@ -1,3 +1,3 @@
 'use strict';
 
-angular.module('employeeEdit', ['core.employee']);
+angular.module('employeeEdit', ['core.employee', 'core.base']);

@@ -1,49 +1,32 @@
 'use strict';
 
 angular.module('employeeEdit').component('employeeEdit', {
-  templateUrl: 'employee-create/employee-create.template.html',
+  templateUrl: 'employee-edit/employee-edit.template.html',
   controller: [
     '$scope',
     '$routeParams',
     '$window',
+    '$controller',
     'employeeService',
-    function EmployeeEditController(
-      $scope,
-      $routeParams,
-      $window,
-      employeeService,
-    ) {
-      $scope.status = {
-        isLoading: false,
-        isSuccess: false,
-        showInfo: false,
-      };
+    function($scope, $routeParams, $window, $controller, employeeService) {
+      angular.extend(this, $controller('base', { $scope }));
 
       employeeService
         .getEmployeeById(parseInt($routeParams.employeeid, 10))
-        .then((employee) => {
-          $scope.employee = employee;
-        });
+        .then(
+          (employee) => {
+            $scope.employee = employee;
+          },
+          (error) => {
+            console.error(error);
+            $scope.error = error;
+          },
+        );
 
-      function onSuccess() {
-        $scope.status.isSuccess = true;
-        $scope.status.isLoading = false;
-      }
-
-      function onFailure() {
-        $scope.status.isSuccess = false;
-        $scope.status.isLoading = false;
-      }
-
-      function onSubmit() {
-        $scope.status.isLoading = true;
-        $scope.status.showInfo = true;
-      }
-
-      $scope.createEmployee = function() {
+      function editEmployee() {
         const { fullname, department } = $scope.employee;
         const { employeeid } = $routeParams;
-        onSubmit();
+        this.onSubmit();
 
         employeeService
           .updateEmployeeById({
@@ -54,17 +37,18 @@ angular.module('employeeEdit').component('employeeEdit', {
           .then(
             (response) => {
               if (response.result === 'success') {
-                onSuccess();
+                this.onSuccess();
                 return;
               }
-              onFailure();
+              this.onFailure();
             },
             (error) => {
-              onFailure();
-              console.log(error);
+              this.onFailure(error);
             },
           );
-      };
+      }
+
+      $scope.editEmployee = editEmployee.bind(this);
 
       $scope.goBack = function() {
         $window.location.href = '/#!/';

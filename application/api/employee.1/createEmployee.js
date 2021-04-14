@@ -10,11 +10,11 @@
     if (!fullname || !department) {
       return new Error('Not all fields provided');
     }
-    if (department.length < 2) {
-      return new Error('Department must be at least 2 characters long');
-    }
-    if (fullname.split(' ').length < 2) {
-      return new Error('Full name must contain at least 2 words');
+
+    try {
+      domain.employee.validate.validateEmployee({ fullname, department });
+    } catch (error) {
+      return error;
     }
 
     await domain.db.insert('Employee', { fullname, department });

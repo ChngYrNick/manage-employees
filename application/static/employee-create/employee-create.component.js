@@ -5,48 +5,31 @@ angular.module('employeeCreate').component('employeeCreate', {
   controller: [
     '$scope',
     '$window',
+    '$controller',
     'employeeService',
-    function EmployeeCreateController($scope, $window, employeeService) {
-      $scope.status = {
-        isLoading: false,
-        isSuccess: false,
-        showInfo: false,
-      };
+    function($scope, $window, $controller, employeeService) {
+      angular.extend(this, $controller('base', { $scope }));
 
-      function onSuccess() {
-        $scope.status.isSuccess = true;
-        $scope.status.isLoading = false;
-      }
-
-      function onFailure() {
-        $scope.status.isSuccess = false;
-        $scope.status.isLoading = false;
-      }
-
-      function onSubmit() {
-        $scope.status.isLoading = true;
-        $scope.status.showInfo = true;
-      }
-
-      $scope.createEmployee = function() {
+      function createEmployee() {
         const { fullname, department } = $scope.employee;
-        $scope.employee = { fullname: '', department: '' };
-        onSubmit();
+        this.onSubmit();
 
         employeeService.createEmployee({ fullname, department }).then(
           (response) => {
             if (response.result === 'success') {
-              onSuccess();
+              $scope.employee = { fullname: '', department: '' };
+              this.onSuccess();
               return;
             }
-            onFailure();
+            this.onFailure();
           },
           (error) => {
-            onFailure();
-            console.error(error);
+            this.onFailure(error);
           },
         );
-      };
+      }
+
+      $scope.createEmployee = createEmployee.bind(this);
 
       $scope.goBack = function() {
         $window.location.href = '/#!/';

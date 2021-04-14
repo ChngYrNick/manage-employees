@@ -1,3 +1,3 @@
 'use strict';
 
-angular.module('signIn', ['core.auth']);
+angular.module('signIn', ['core.auth', 'core.base']);
