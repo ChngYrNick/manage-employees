@@ -23,7 +23,7 @@ td:nth-child(2):hover {
   padding: var(--free-space);
 }
 
-.modal-container {
+modal {
   display: none;
 }
 

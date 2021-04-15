@@ -42,6 +42,9 @@ angular.module('core.modal').directive('modal', [
 
         modalService.add(modal);
       },
+      restrict: 'E',
+      transclude: true,
+      templateUrl: 'partials/modal.template.html',
     };
   },
 ]);
