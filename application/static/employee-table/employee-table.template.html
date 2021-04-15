@@ -1,16 +1,31 @@
 <div class="toolbar row">
   <div class="col-md-6">
-    <input id="search-employee" class="form-control" type="text" placeholder="Search for employee" ng-model="search.fullname">
+    <input
+      id="search-employee"
+      class="form-control"
+      type="text"
+      placeholder="Search for employee"
+      ng-model="search.fullname"
+    />
   </div>
 
   <div class="col-md-4">
-    <select class="form-control" id="select-department" ng-model="search.department"
-      ng-options="department for department in departments">
-    </select>
+    <select
+      class="form-control"
+      id="select-department"
+      ng-model="search.department"
+      ng-options="department for department in departments"
+    ></select>
   </div>
 
   <div class="col-md-2">
-    <button type="button" ng-click="goToEmployeeCreate()" class="btn btn-primary btn-block">Add</button>
+    <button
+      type="button"
+      ng-click="goToEmployeeCreate()"
+      class="btn btn-primary btn-block"
+    >
+      Add
+    </button>
   </div>
 </div>
 
@@ -28,16 +43,26 @@
     <tbody>
       <tr ng-repeat="employee in employees | filter:search">
         <td>{{ $index + 1 }}</td>
-        <td ng-click="goToEmployeeDetail(employee.employeeid)">{{ employee.fullname }}</td>
+        <td ng-click="goToEmployeeDetail(employee.employeeid)">
+          {{ employee.fullname }}
+        </td>
         <td>{{ employee.department }}</td>
-        <td><a href="#!/edit/{{employee.employeeid}}">Edit</a></td>
-        <td><a ng-click="onDelete(employee.employeeid)" style="cursor: pointer;">Delete</a></td>
+        <td>
+          <a ng-click="onEdit(employee.employeeid)" style="cursor: pointer"
+            >Edit</a
+          >
+        </td>
+        <td>
+          <a ng-click="onDelete(employee.employeeid)" style="cursor: pointer"
+            >Delete</a
+          >
+        </td>
       </tr>
     </tbody>
   </table>
 </table>
 
-<modal id="modal-confirm">
+<div modal class="modal-container" id="modal-confirm">
   <div class="modal-background">
     <div class="container">
       <div class="row">
@@ -48,12 +73,24 @@
                 <p>Are you sure?</p>
               </strong>
               <p>You realy wana delete this perfect record???</p>
-              <button type="button" class="btn btn-default" ng-click="closeModal('modal-confirm');">Cancel</button>
-              <button type="button" class="btn btn-danger" ng-click="confirmDelete()">Delete</button>
+              <button
+                type="button"
+                class="btn btn-default"
+                ng-click="closeModal('modal-confirm');"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                class="btn btn-danger"
+                ng-click="confirmDelete()"
+              >
+                Delete
+              </button>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</modal>
+</div>

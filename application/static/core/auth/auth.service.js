@@ -5,24 +5,28 @@ angular.module('core.auth').factory('authService', [
   'metacom',
   ($q, metacom) => ({
     signIn(data) {
-      return $q((resolve, reject) => {
-        metacom.api.auth
-          .signin(data)
-          .then((response) => {
-            resolve(response);
-          })
-          .catch((err) => reject(err));
-      });
+      const deffered = $q.defer();
+
+      metacom.api.auth
+        .signin(data)
+        .then((response) => {
+          deffered.resolve(response);
+        })
+        .catch((err) => deffered.reject(err));
+
+      return deffered.promise;
     },
     restore(token) {
-      return $q((resolve, reject) => {
-        metacom.api.auth
-          .restore({ token })
-          .then((response) => {
-            resolve(response.status);
-          })
-          .catch((err) => reject(err));
-      });
+      const deffered = $q.defer();
+
+      metacom.api.auth
+        .restore({ token })
+        .then((response) => {
+          deffered.resolve(response.status);
+        })
+        .catch((err) => deffered.reject(err));
+
+      return deffered.promise;
     },
   }),
 ]);

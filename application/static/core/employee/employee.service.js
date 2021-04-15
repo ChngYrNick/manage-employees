@@ -5,56 +5,64 @@ angular.module('core.employee').factory('employeeService', [
   'metacom',
   ($q, metacom) => ({
     getEmployees() {
-      return $q((resolve, reject) => {
-        metacom.api.employee
-          .getEmployees()
-          .then((response) => {
-            resolve(response.data);
-          })
-          .catch((err) => reject(err));
-      });
+      const deffered = $q.defer();
+
+      metacom.api.employee
+        .getEmployees()
+        .then((response) => {
+          deffered.resolve(response.data);
+        })
+        .catch((err) => deffered.reject(err));
+
+      return deffered.promise;
     },
     getEmployeeById(id) {
-      return $q((resolve, reject) => {
-        metacom.api.employee
-          .getEmployeeById({ employeeid: id })
-          .then((response) => {
-            resolve(response.data);
-          })
-          .catch((err) => reject(err));
-      });
+      const deffered = $q.defer();
+
+      metacom.api.employee
+        .getEmployeeById({ employeeid: id })
+        .then((response) => {
+          deffered.resolve(response.data);
+        })
+        .catch((err) => deffered.reject(err));
+
+      return deffered.promise;
     },
     createEmployee(data) {
-      return $q((resolve, reject) => {
-        metacom.api.employee
-          .createEmployee(data)
-          .then((response) => {
-            resolve(response);
-          })
-          .catch((err) => {
-            reject(err);
-          });
-      });
+      const deffered = $q.defer();
+
+      metacom.api.employee
+        .createEmployee(data)
+        .then((response) => {
+          deffered.resolve(response);
+        })
+        .catch((err) => deffered.reject(err));
+
+      return deffered.promise;
     },
     updateEmployeeById(data) {
-      return $q((resolve, reject) => {
-        metacom.api.employee
-          .updateEmployeeById(data)
-          .then((response) => {
-            resolve(response);
-          })
-          .catch((err) => reject(err));
-      });
+      const deffered = $q.defer();
+
+      metacom.api.employee
+        .updateEmployeeById(data)
+        .then((response) => {
+          deffered.resolve(response);
+        })
+        .catch((err) => deffered.reject(err));
+
+      return deffered.promise;
     },
     deleteEmployeeById(id) {
-      return $q((resolve, reject) => {
-        metacom.api.employee
-          .deleteEmployeeById({ employeeid: id })
-          .then((response) => {
-            resolve(response);
-          })
-          .catch((err) => reject(err));
-      });
+      const deffered = $q.defer();
+
+      metacom.api.employee
+        .deleteEmployeeById({ employeeid: id })
+        .then((response) => {
+          deffered.resolve(response);
+        })
+        .catch((err) => deffered.reject(err));
+
+      return deffered.promise;
     },
   }),
 ]);

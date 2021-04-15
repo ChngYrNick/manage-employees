@@ -5,12 +5,12 @@ angular.module('app').config([
   function config($routeProvider) {
     const when = $routeProvider.when;
 
-    $routeProvider.when = function(path, route) {
+    $routeProvider.when = function (path, route) {
       route.resolve || (route.resolve = {});
       angular.extend(route.resolve, {
         init: [
           'initService',
-          function(initService) {
+          function (initService) {
             return initService.promise;
           },
         ],
@@ -21,19 +21,24 @@ angular.module('app').config([
 
     $routeProvider
       .when('/', {
-        template: '<employee-table></employee-table>',
+        templateUrl: 'employee-table/employee-table.template.html',
+        controller: 'employeeTable',
       })
       .when('/sign-in', {
-        template: '<sign-in></sign-in>',
+        templateUrl: 'sign-in/sign-in.template.html',
+        controller: 'signIn',
       })
       .when('/employee/:employeeid', {
-        template: '<employee-detail></employee-detail>',
+        templateUrl: 'employee-detail/employee-detail.template.html',
+        controller: 'employeeDetail',
       })
       .when('/edit/:employeeid', {
-        template: '<employee-edit></employee-edit>',
+        templateUrl: 'employee-edit/employee-edit.template.html',
+        controller: 'employeeEdit',
       })
       .when('/create/', {
-        template: '<employee-create></employee-create>',
+        templateUrl: 'employee-create/employee-create.template.html',
+        controller: 'employeeCreate',
       })
       .otherwise({
         templateUrl: '/partials/not-found.template.html',

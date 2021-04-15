@@ -39,10 +39,8 @@
     "metatests": "^0.7.2"
   },
   "dependencies": {
-    "angular": "1.8.x",
-    "angular-animate": "1.8.x",
-    "angular-resource": "1.8.x",
-    "angular-route": "1.8.x",
+    "angular": "1.2.32",
+    "angular-route": "1.2.32",
     "bootstrap": "3.3.x",
     "impress": "^2.1.0",
     "jquery": "3.3.x",
