@@ -1,45 +1,13 @@
 'use strict';
 
-angular.module('core.metacom').factory('metacom', [
+angular.module('core.metacom').factory('Metacom', [
   'EventEmitter',
-  '$window',
-  (EventEmitter, $window) => {
+  'MetacomError',
+  'MetacomInterface',
+  (EventEmitter, MetacomError, MetacomInterface) => {
     const CALL_TIMEOUT = 7 * 1000;
     const PING_INTERVAL = 60 * 1000;
     const RECONNECT_TIMEOUT = 2 * 1000;
-
-    const connections = new Set();
-
-    $window.addEventListener('online', () => {
-      for (const connection of connections) {
-        if (!connection.connected) connection.open();
-      }
-    });
-
-    class MetacomError extends Error {
-      constructor({ message, code }) {
-        super(message);
-        this.code = code;
-      }
-    }
-
-    class MetacomInterface {
-      constructor() {
-        this._events = new Map();
-      }
-
-      on(name, fn) {
-        const event = this._events.get(name);
-        if (event) event.add(fn);
-        else this._events.set(name, new Set([fn]));
-      }
-
-      emit(name, ...args) {
-        const event = this._events.get(name);
-        if (!event) return;
-        for (const fn of event.values()) fn(...args);
-      }
-    }
 
     class Metacom extends EventEmitter {
       constructor(url, options = {}) {
@@ -154,102 +122,6 @@ angular.module('core.metacom').factory('metacom', [
       }
     }
 
-    class WebsocketTransport extends Metacom {
-      async open() {
-        if (this.connected) return;
-        const socket = new WebSocket(this.url);
-        this.active = true;
-        this.socket = socket;
-        connections.add(this);
-
-        socket.addEventListener('message', ({ data }) => {
-          if (typeof data === 'string') {
-            this.message(data);
-            return;
-          }
-          if (!this.currentStream) return;
-          this.currentStream.chunks.push(data);
-          this.currentStream = null;
-        });
-
-        socket.addEventListener('close', () => {
-          this.connected = false;
-          setTimeout(() => {
-            if (this.active) this.open();
-          }, this.reconnectTimeout);
-        });
-
-        socket.addEventListener('error', () => {
-          socket.close();
-        });
-
-        setInterval(() => {
-          if (this.active) {
-            const interval = new Date().getTime() - this.lastActivity;
-            if (interval > this.pingInterval) this.send('{}');
-          }
-        }, this.pingInterval);
-
-        return new Promise((resolve) => {
-          socket.addEventListener('open', () => {
-            this.connected = true;
-            resolve();
-          });
-        });
-      }
-
-      close() {
-        this.active = false;
-        connections.delete(this);
-        if (!this.socket) return;
-        this.socket.close();
-        this.socket = null;
-      }
-
-      send(data) {
-        if (!this.connected) return;
-        this.lastActivity = new Date().getTime();
-        this.socket.send(data);
-      }
-    }
-
-    class HttpTransport extends Metacom {
-      async open() {
-        this.active = true;
-        this.connected = true;
-      }
-
-      close() {
-        this.active = false;
-        this.connected = false;
-      }
-
-      send(data) {
-        this.lastActivity = new Date().getTime();
-        fetch(this.url, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: data,
-        }).then((res) => {
-          const { status } = res;
-          if (status === 200) {
-            return res.text().then((packet) => {
-              if (packet.error) throw new MetacomError(packet.error);
-              this.message(packet);
-            });
-          }
-          throw new Error(`Status Code: ${status}`);
-        });
-      }
-    }
-
-    Metacom.transport = {
-      ws: WebsocketTransport,
-      http: HttpTransport,
-    };
-
-    const protocol = location.protocol === 'http:' ? 'ws' : 'wss';
-
-    return Metacom.create(`${protocol}://${location.host}/api`);
+    return Metacom;
   },
 ]);

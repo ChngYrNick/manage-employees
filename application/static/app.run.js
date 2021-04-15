@@ -8,7 +8,6 @@ angular.module('app').run([
   'initService',
   ($rootScope, $location, metacom, authService, initService) => {
     metacom.load('auth', 'employee').then(() => {
-      window.api = metacom.api;
       $rootScope.$on('$routeChangeStart', () => {
         const token = localStorage.getItem('metarhia.session.token');
         if (!token) {
