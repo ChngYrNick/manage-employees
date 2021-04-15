@@ -3,11 +3,16 @@
 angular.module('employeeTable').controller('employeeTable', [
   '$scope',
   '$location',
+  '$controller',
   'employeeService',
   'modalService',
-  function ($scope, $location, employeeService, modalService) {
-    function reloadData() {
+  function ($scope, $location, $controller, employeeService, modalService) {
+    angular.extend(this, $controller('base', { $scope }));
+
+    this.reloadData = function () {
+      this.onSubmit();
       employeeService.getEmployees().then((employees) => {
+        this.onSuccess();
         $scope.employees = employees;
         $scope.departments = employees
           .map((employee) => employee.department)
@@ -15,11 +20,11 @@ angular.module('employeeTable').controller('employeeTable', [
 
         $scope.departments.unshift('');
       });
-    }
+    };
 
-    reloadData();
+    this.reloadData();
 
-    $scope.onDelete = function (id) {
+    function onDelete(id) {
       function onConfirm(id) {
         modalService.close('modal-confirm');
 
@@ -27,15 +32,17 @@ angular.module('employeeTable').controller('employeeTable', [
           .deleteEmployeeById(parseInt(id, 10))
           .then((response) => {
             if (response.result === 'success') {
-              reloadData();
+              this.reloadData();
             }
           });
       }
 
-      $scope.confirmDelete = onConfirm.bind(null, id);
+      $scope.confirmDelete = onConfirm.bind(this, id);
 
       modalService.open('modal-confirm');
-    };
+    }
+
+    $scope.onDelete = onDelete.bind(this);
 
     $scope.closeModal = function (id) {
       modalService.close(id);

@@ -33,6 +33,15 @@
   </table>
 </table>
 
+<div class="row">
+  <img
+    src="./images/large-spinner.svg"
+    class="img-responsive center-block"
+    alt="spinner"
+    ng-if="status.showInfo && status.isLoading"
+  />
+</div>
+
 <modal id="modal-confirm">
   <strong>
     <p>Are you sure?</p>
