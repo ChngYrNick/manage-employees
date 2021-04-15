@@ -41,11 +41,11 @@ angular.module('employeeTable').controller('employeeTable', [
       modalService.close(id);
     };
 
-    $scope.goToEmployeeDetail = function (employeeid) {
+    $scope.onEmployee = function (employeeid) {
       $location.path(`/employee/${employeeid}`);
     };
 
-    $scope.goToEmployeeCreate = function () {
+    $scope.onAdd = function () {
       $location.path('/create');
     };
 

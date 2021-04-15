@@ -5,6 +5,7 @@ angular.module('employeeTable').directive('toolbar', () => ({
   scope: {
     search: '=search',
     departments: '=departments',
+    onAdd: '&onAdd',
   },
   restrict: 'E',
   transclude: true,

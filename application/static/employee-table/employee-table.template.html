@@ -1,4 +1,4 @@
-<toolbar search="search" departments="departments"></toolbar>
+<toolbar search="search" departments="departments" on-add="onAdd()"></toolbar>
 
 <table class="table-responsive">
   <table class="table table-bordered">
@@ -14,7 +14,7 @@
     <tbody>
       <tr ng-repeat="employee in employees | filter:search">
         <td>{{ $index + 1 }}</td>
-        <td ng-click="goToEmployeeDetail(employee.employeeid)">
+        <td ng-click="onEmployee(employee.employeeid)">
           {{ employee.fullname }}
         </td>
         <td>{{ employee.department }}</td>
