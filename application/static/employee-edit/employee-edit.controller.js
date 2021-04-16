@@ -7,6 +7,7 @@ angular.module('employeeEdit').controller('employeeEdit', [
   'employeeService',
   function ($scope, $routeParams, $controller, employeeService) {
     angular.extend(this, $controller('base', { $scope }));
+    $scope.employee = { fullname: '', department: '' };
 
     employeeService.getEmployeeById(parseInt($routeParams.employeeid, 10)).then(
       (employee) => {
@@ -14,7 +15,6 @@ angular.module('employeeEdit').controller('employeeEdit', [
         this.onFailure();
       },
       (error) => {
-        console.error(error);
         this.onFailure(error);
       }
     );

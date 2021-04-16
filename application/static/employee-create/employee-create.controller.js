@@ -6,6 +6,7 @@ angular.module('employeeCreate').controller('employeeCreate', [
   'employeeService',
   function ($scope, $controller, employeeService) {
     angular.extend(this, $controller('base', { $scope }));
+    $scope.employee = { fullname: '', department: '' };
 
     function createEmployee() {
       const { fullname, department } = $scope.employee;

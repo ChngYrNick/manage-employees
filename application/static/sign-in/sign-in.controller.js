@@ -7,6 +7,7 @@ angular.module('signIn').controller('signIn', [
   'authService',
   function ($scope, $location, $controller, authService) {
     angular.extend(this, $controller('base', { $scope }));
+    $scope.form = { login: '', password: '' };
 
     function onSignIn() {
       const { login, password } = $scope.form;
