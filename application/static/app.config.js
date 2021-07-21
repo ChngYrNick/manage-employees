@@ -21,23 +21,23 @@ angular.module('app').config([
 
     $routeProvider
       .when('/', {
-        templateUrl: 'employee-table/employee-table.template.html',
+        templateUrl: 'components/employee-table/employee-table.template.html',
         controller: 'employeeTable',
       })
       .when('/sign-in', {
-        templateUrl: 'sign-in/sign-in.template.html',
+        templateUrl: 'components/sign-in/sign-in.template.html',
         controller: 'signIn',
       })
       .when('/employee/:employeeid', {
-        templateUrl: 'employee-detail/employee-detail.template.html',
+        templateUrl: 'components/employee-detail/employee-detail.template.html',
         controller: 'employeeDetail',
       })
       .when('/edit/:employeeid', {
-        templateUrl: 'employee-edit/employee-edit.template.html',
+        templateUrl: 'components/employee-edit/employee-edit.template.html',
         controller: 'employeeEdit',
       })
       .when('/create/', {
-        templateUrl: 'employee-create/employee-create.template.html',
+        templateUrl: 'components/employee-create/employee-create.template.html',
         controller: 'employeeCreate',
       })
       .otherwise({

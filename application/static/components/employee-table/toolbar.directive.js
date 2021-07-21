@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('employeeTable').directive('toolbar', () => ({
-  templateUrl: 'employee-table/toolbar.template.html',
+  templateUrl: 'components/employee-table/toolbar.template.html',
   scope: {
     search: '=search',
     departments: '=departments',
